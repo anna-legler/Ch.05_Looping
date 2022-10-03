@@ -2,14 +2,14 @@
 
 '''
  1. Make the following program work.
-   '''  
-     print("This program takes three numbers and returns the sum.")
-     total = 0
+   '''
+print("This program takes three numbers and returns the sum.")
+total = 0
 
-     for i in range(3):
-         x = input("Enter a number: ")
-         total = total + i
-     print("The total is:", x)
+for i in range(3):
+    x = int(input("Enter a number: "))
+    total += x
+print("The total is:", total)
   
 
 
@@ -17,7 +17,8 @@
   2. Write a Python program that will use a FOR loop to print the even
      numbers from 2 to 100, inclusive.
 '''
-
+for i in range(2, 101, 2):
+    print(i)
 
 
 
