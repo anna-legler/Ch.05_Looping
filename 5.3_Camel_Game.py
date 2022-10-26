@@ -12,11 +12,13 @@ camelTiredness = 0
 nativesTraveled = -15
 nativesDistance = 15
 milesTraveled = 0
+desertDistance = random.randrange(150, 251)
 dead = False
 done = False
 
 while not done:
     print("Welcome to Camel!")
+    print()
     print("You have stolen a camel to make your way across the desert.")
     print("The natives want their camel back and are hunting you down!")
     print("Survive your desert trek and outrun the natives.")
@@ -34,6 +36,7 @@ while not done:
             thirst = 0
             camelTiredness = 0
 
+        print("-----------------------------------------")
         print("A. Drink from canteen.")
         print("B. Ahead moderate speed.")
         print("C. Ahead full speed.")
@@ -78,14 +81,13 @@ while not done:
             print("You traveled", milesTraveled, "miles.")
             print()
             totalMilesTraveled += milesTraveled
-            camelTiredness += random.randrange(1,4)
+            camelTiredness += random.randrange(1, 5)
             thirst += 1
-            nativesTraveled += random.randrange(7, 15)
+            nativesTraveled += random.randrange(8, 19)
             nativesDistance = totalMilesTraveled - nativesTraveled
         # Rest for the night
         elif userInput.lower() == "d":
             print("Your camel is happy.")
-            print()
             camelTiredness = 0
             nativesTraveled += random.randrange(7, 15)
             nativesDistance = totalMilesTraveled - nativesTraveled
@@ -104,6 +106,7 @@ while not done:
         # If the players camel dies the dead loop will break
         if camelTiredness == 8:
             dead = True
+            break
         # Your camel is getting tired
         elif camelTiredness >= 5:
             print("Your camel is getting tired.")
@@ -111,13 +114,19 @@ while not done:
         # If the natives catch up to the player the dead loop will break
         if nativesDistance <= 0:
             dead = True
+            break
         # The natives are getting close
         elif nativesDistance < 15:
             print("The natives are getting close.")
             print()
+        # You made it across the dessert
+        if totalMilesTraveled >= desertDistance:
+            dead = True
+            break
 
     # You died of thirst GAME OVER
     if thirst == 6:
+        print()
         print("You died of thirst!")
         print("GAME OVER")
         print()
@@ -131,11 +140,13 @@ while not done:
             nativesTraveled = -15
             nativesDistance = 15
             milesTraveled = 0
+            desertDistance = random.randrange(150, 251)
             dead = False
         else:
             done = True
     # Your camel is dead GAME OVER
     elif camelTiredness == 8:
+        print()
         print("Your camel is dead.")
         print("GAME OVER")
         print()
@@ -149,11 +160,13 @@ while not done:
             nativesTraveled = -15
             nativesDistance = 15
             milesTraveled = 0
+            desertDistance = random.randrange(150, 251)
             dead = False
         else:
             done = True
     # The natives caught you
     elif nativesDistance <= 0:
+        print()
         print("The natives caught up to you.")
         print("GAME OVER")
         print()
@@ -167,17 +180,20 @@ while not done:
             nativesTraveled = -15
             nativesDistance = 15
             milesTraveled = 0
+            desertDistance = random.randrange(150, 251)
             dead = False
         else:
             done = True
     # YOU WON
-    elif totalMilesTraveled >= 200:
+    elif totalMilesTraveled >= desertDistance:
+        print()
         print("Congratulations! You made it across the desert!")
         print("YOU WIN")
         print()
         playAgain = input("Would you like to play again? (Y/N) ")
         # Allows player to play again
         if playAgain.lower() == "y":
+            print()
             totalMilesTraveled = 0
             water = 3
             thirst = 0
@@ -185,8 +201,9 @@ while not done:
             nativesTraveled = -15
             nativesDistance = 15
             milesTraveled = 0
+            desertDistance = random.randrange(150, 251)
             dead = False
         else:
             done = True
-
+print()
 print("Thanks for playing!")
